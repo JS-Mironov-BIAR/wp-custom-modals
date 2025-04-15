@@ -1,8 +1,9 @@
-import buildModal from '../../modal/modal'
+import buildModal from '../../modal/modalBuilder'
 import buttonClose from '../closeButton'
 import bodyScrollStop from '../../ui'
 import { modalState, setModalState } from '../../modal/modalState'
 import { extractContentEl, restoreContentEl } from '../../modal/modalProcessing'
+import { applyStatusHandlers } from '../../status/statusService'
 
 /**
  * Handles the click event for action buttons that trigger modals.
@@ -32,6 +33,10 @@ export default function handleModalTrigger(e, button) {
     }
 
     if (modalEl) {
+        if (contentEl?.dataset?.form === 'true') {
+            applyStatusHandlers(modalEl, contentEl)
+        }
+
         setModalState({
             modalId: selector,
             contentEl,

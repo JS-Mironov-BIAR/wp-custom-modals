@@ -1,9 +1,9 @@
 import initModalHandler from './modalHandler'
-import { modalState, setModalState } from './modalState'
+import { setModalState } from './modalState'
 
 /**
  * Builds a modal window and injects provided content.
- * Also updates the modal state and initializes modal event handling.
+ * Updates modal state and initializes event handling.
  *
  * @param {HTMLElement} contentEl - The DOM element to be moved into the modal.
  * @returns {HTMLElement|null} The created modal element or null if one already exists.
