@@ -28,7 +28,7 @@ export const modalState = {
 /**
  * Updates modal state by merging in specified fields.
  *
- * @param {{isOpening: boolean}} updateValue - An object with keys to update in the modal state.
+ * @param {{isLocked: boolean}} updateValue - An object with keys to update in the modal state.
  * @returns {void}
  */
 export function setModalState(updateValue) {

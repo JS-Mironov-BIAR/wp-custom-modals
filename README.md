@@ -23,6 +23,55 @@ npm install native-modal-js
 
 ---
 
+## 📦 Build & Environments
+
+### Local Development
+
+To enable source maps and unminified output, create a `.env` file in the project root:
+
+```env
+NODE_ENV=development
+```
+
+Then run:
+
+```bash
+npm run build
+```
+
+### Production Build (Default)
+
+If `.env` file is missing, the build mode defaults to `production`:
+
+```bash
+npm run build
+```
+
+Will output:
+
+- `main.min.js`
+
+### Sample `.env` file
+
+Use `.env.example` as a starting point:
+
+```env
+NODE_ENV=development
+```
+
+---
+
+## 🔄 Webpack Entrypoints
+
+- `main.js` — application logic (e.g. DOM listeners, UI setup) & global API
+
+This structure allows you to:
+- Load only what you need
+- Separate internal logic from public interfaces
+- Integrate easily with WordPress or other systems
+
+---
+
 ## ⚙️ Usage
 
 ### HTML
@@ -138,25 +187,32 @@ You can override styles to fit your design. Example:
 ## 📁 Project Structure
 
 ```bash
-/modal/                  # Core modal logic
-  modalState.js          # Global modal state
-  modalHandler.js        # Attaches modal event listeners
-  modalEvents.js         # Overlay clicks & closing logic
-  modalProcessing.js     # Content in/out DOM logic
-  modal.js               # Modal DOM creation logic
+/components/
+  /modal/                              # 💬 Core modal logic
+    modalAPI.js                        # 🌐 Global modal API (window.ModalAPI)
+    modalState.js                      # 🧠 Shared modal state object
+    modalHandler.js                    # 🖱️ Overlay click detection handler
+    modalEvents.js                     # 🔄 Modal open/close logic
+    modalProcessing.js                 # 🔁 DOM content extraction/injection
+    modalBuilder.js                    # 🏗️ Modal DOM generator
 
-/components/             # UI components and controls
-  controllers/
+  /status/                             # ✅ Modal status system (success/error)
+    statusController.js                # 🎮 Creates status methods for modal element
+    statusMessage.js                   # 🧱 Builds status message DOM element
+    statusPresets.js                   # ⚙️ Default status presets (title, icon, description)
+    statusService.js                   # 🔗 Applies status methods to modals (if data-form="true")
+
+  /controllers/                        # 🎮 UI interaction components
     action-button/
-      actionButtonHandler.js  # Action button binding
-      actionButtonEvents.js   # Action button click logic
-  closeButton.js         # Close button component
+      actionButtonHandler.js          # ⚙️ Binds click events to action buttons
+      actionButtonEvents.js           # 🎯 Handles modal triggering logic
+    closeButton.js                    # ❌ Reusable modal close button component
 
-/helpers/                # Utility functions
-  helpers.js             # Button generator & utilities
+/helpers/                              # 🛠️ Utility functions
+  helpers.js                           # 🔧 Common helpers (e.g. button generator)
 
-/ui/                     # UI-level behaviors
-  scroll.js              # Body scroll lock/unlock
+/ui/                                   # 🎨 UI behavior utilities
+  scroll.js                            # 🚫 Locks/unlocks page scroll when modal is active
 ```
 
 ---
