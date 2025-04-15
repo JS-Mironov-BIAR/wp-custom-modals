@@ -23,6 +23,57 @@ npm install native-modal-js
 
 ---
 
+## 📦 Build & Environments
+
+### Local Development
+
+To enable source maps and unminified output, create a `.env` file in the project root:
+
+```env
+NODE_ENV=development
+```
+
+Then run:
+
+```bash
+npm run build
+```
+
+### Production Build (Default)
+
+If `.env` file is missing, the build mode defaults to `production`:
+
+```bash
+npm run build
+```
+
+Will output:
+
+- `main.min.js`
+- `global.min.js`
+
+### Sample `.env` file
+
+Use `.env.example` as a starting point:
+
+```env
+NODE_ENV=development
+```
+
+---
+
+## 🔄 Webpack Entrypoints
+
+- `main.js` — application logic (e.g. DOM listeners, UI setup)
+- `global.js` — global API accessible via `window.MyPlugin.Modal`
+
+This structure allows you to:
+- Load only what you need
+- Separate internal logic from public interfaces
+- Integrate easily with WordPress or other systems
+
+---
+
 ## ⚙️ Usage
 
 ### HTML
@@ -143,7 +194,7 @@ You can override styles to fit your design. Example:
   modalHandler.js        # Attaches modal event listeners
   modalEvents.js         # Overlay clicks & closing logic
   modalProcessing.js     # Content in/out DOM logic
-  modal.js               # Modal DOM creation logic
+  modalBuilder.js               # Modal DOM creation logic
 
 /components/             # UI components and controls
   controllers/

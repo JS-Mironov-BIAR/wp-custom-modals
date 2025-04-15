@@ -19,3 +19,16 @@ export default function createButton(label, className, iconSvg, callback) {
 
     return button
 }
+
+/**
+ * Toggles soft visibility class on modal content & controllers.
+ * @param {HTMLElement} modal
+ * @param {boolean} hidden - true = hide, false = show
+ */
+export function toggleModalElementsVisibility(modal, hidden = true) {
+    const content = modal.querySelector('.modal-container__content')
+    const controls = modal.querySelector('.modal-container__controllers')
+
+    if (content) content.classList.toggle('hidden', hidden)
+    if (controls) controls.classList.toggle('hidden', hidden)
+}
